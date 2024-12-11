@@ -1,7 +1,15 @@
 import createMiddleware from 'next-intl/middleware'
 import { routing } from './i18n/routing'
+import { NextRequest } from 'next/server'
 
-// export default createMiddleware({ ...routing, localePrefix: 'as-needed' })
+const intlMiddleware = createMiddleware({
+  ...routing,
+  localePrefix: 'as-needed',
+})
+
+export default function middleware(req: NextRequest) {
+  return intlMiddleware(req)
+}
 
 export const config = {
   // Match only internationalized pathnames
