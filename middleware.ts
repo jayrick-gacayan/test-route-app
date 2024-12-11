@@ -8,7 +8,7 @@ const intlMiddleware = createMiddleware({
 })
 
 export default function middleware(req: NextRequest) {
-  return NextResponse.next()
+  return intlMiddleware(req)
 }
 
 export const config = {
