@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware'
 import { routing } from './i18n/routing'
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 const intlMiddleware = createMiddleware({
   ...routing,
@@ -8,7 +8,7 @@ const intlMiddleware = createMiddleware({
 })
 
 export default function middleware(req: NextRequest) {
-  return intlMiddleware(req)
+  return NextResponse.next()
 }
 
 export const config = {
