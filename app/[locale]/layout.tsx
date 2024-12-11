@@ -16,11 +16,21 @@ export default async function LocaleLayout({
   testpar: React.ReactNode
   params: { locale: string }
 }) {
+  if (!routing.locales.includes(locale)) {
+    notFound()
+  }
+
+  const messages = await getMessages()
+
+  setRequestLocale(locale)
+
   return (
     <html lang={locale}>
       <body>
-        {children}
-        {testpar}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          {testpar}
+        </NextIntlClientProvider>
       </body>
     </html>
   )
